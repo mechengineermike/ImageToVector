@@ -1,6 +1,8 @@
+Use this tool at: `https://mechengineermike.github.io/ImageToVector/`. 
+
 # Image to Vector
 
-A private, browser-based raster-to-SVG converter tuned for black artwork, script lettering, clipart, and laser engraver assets. Images are processed locally and never uploaded.
+A free, private, browser-based raster-to-SVG converter tuned for single color artwork, script lettering, clipart, and laser engraver assets. Images are processed locally.
 
 ## Browser version
 
@@ -30,8 +32,6 @@ Then open <http://localhost:8080>.
 2. Open **Settings -> Pages** in the repository.
 3. Choose **Deploy from a branch**.
 4. Select `main` and `/ (root)`, then save.
-
-The public URL will be `https://mechengineermike.github.io/ImageToVector/`. Later pushes to `main` deploy automatically.
 
 ## Desktop version
 
