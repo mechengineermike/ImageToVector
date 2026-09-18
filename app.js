@@ -91,7 +91,7 @@ async function traceItem(item, version) {
   });
   if (version !== state.traceVersion || item.id !== state.selectedId) return;
   const d = paths.join("");
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${item.bitmap.width}" height="${item.bitmap.height}" viewBox="0 0 ${imageData.width} ${imageData.height}">\n  <title>${escapeXml(item.file.name.replace(/\.[^.]+$/, ""))}</title>\n  <path d="${d}" fill="#000000" stroke="none" fill-rule="evenodd"/>\n</svg>\n`;
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${item.bitmap.width}" height="${item.bitmap.height}" viewBox="0 0 ${imageData.width} ${imageData.height}">\n  <title>${escapeXml(item.file.name.replace(/\.[^.]+$/, ""))}</title>\n  <g transform="translate(0 ${imageData.height}) scale(0.1 -0.1)" fill="#000000" stroke="none" fill-rule="evenodd">\n    <path d="${d}"/>\n  </g>\n</svg>\n`;
   if (item.vectorUrl) URL.revokeObjectURL(item.vectorUrl);
   item.svg = svg;
   item.vectorUrl = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
