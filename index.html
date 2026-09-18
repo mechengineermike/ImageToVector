@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert raster artwork to clean, transparent SVG vectors in your browser.">
+  <meta name="theme-color" content="#171817">
+  <title>Image to Vector</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Image to Vector home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>IMAGE TO VECTOR</span>
+    </a>
+    <p>Browser-based Potrace conversion</p>
+    <a class="github-link" href="https://github.com/mechengineermike/ImageToVector" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar">
+      <section>
+        <div class="section-heading"><span class="step">01</span><div><h1>Add artwork</h1><p>PNG, JPG, or WebP</p></div></div>
+        <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+        <button id="upload-button" class="upload-button" type="button">
+          <span class="upload-icon" aria-hidden="true">↑</span>
+          <span><strong>Choose images</strong><small>or drop them anywhere</small></span>
+        </button>
+        <div id="file-list" class="file-list" aria-live="polite"></div>
+      </section>
+
+      <section>
+        <div class="section-heading"><span class="step">02</span><div><h2>Tune the trace</h2><p>Updates the selected image</p></div></div>
+        <div class="control-heading"><label for="threshold">Threshold</label><output id="threshold-value">165</output></div>
+        <input id="threshold" type="range" min="80" max="230" value="165" step="1">
+        <div class="range-labels"><span>Thinner</span><span>Darker</span></div>
+
+        <div class="control-heading space-top"><label for="speckles">Remove specks</label><output id="speckles-value">2 px</output></div>
+        <input id="speckles" type="range" min="0" max="20" value="2" step="1">
+        <div class="range-labels"><span>Keep detail</span><span>Cleaner</span></div>
+
+        <label class="switch-row space-top"><span><strong>Optimize curves</strong><small>Fewer SVG points</small></span><input id="optimize" type="checkbox"><i aria-hidden="true"></i></label>
+        <label class="switch-row"><span><strong>Invert artwork</strong><small>Trace light shapes</small></span><input id="invert" type="checkbox"><i aria-hidden="true"></i></label>
+      </section>
+
+      <section class="download-section">
+        <button id="download-button" class="primary" type="button" disabled>Download SVG <span aria-hidden="true">↓</span></button>
+        <button id="download-all-button" class="secondary" type="button" disabled>Download all</button>
+      </section>
+      <p class="privacy">Your images never leave this browser.</p>
+    </aside>
+
+    <section id="drop-zone" class="content">
+      <div class="preview-header">
+        <div><h2 id="preview-title">No image selected</h2><p id="preview-meta">Add artwork to begin tracing</p></div>
+        <div class="view-tabs" role="group" aria-label="Preview layout">
+          <button type="button" data-view="split" class="active">Split</button>
+          <button type="button" data-view="original">Original</button>
+          <button type="button" data-view="vector">Vector</button>
+        </div>
+      </div>
+
+      <div id="preview-stage" class="preview-stage split-view">
+        <div class="preview-pane original-pane">
+          <span class="pane-label">RASTER</span>
+          <img id="original-preview" alt="Original raster preview">
+        </div>
+        <div class="preview-pane vector-pane">
+          <span class="pane-label">VECTOR</span>
+          <img id="vector-preview" alt="Vector preview">
+          <div id="working" class="working"><span></span><strong>Tracing</strong></div>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-art" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>Drop an image here</strong>
+          <p>Black artwork on a white background works best.</p>
+        </div>
+      </div>
+
+      <footer class="statusbar">
+        <span id="status"><i></i> Ready</span>
+        <span id="vector-stats"></span>
+      </footer>
+      <div class="drop-overlay"><strong>Drop images to vectorize</strong></div>
+      <div id="error" class="error" role="alert"></div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
