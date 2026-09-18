@@ -2,7 +2,7 @@ Use this tool at: `https://mechengineermike.github.io/ImageToVector/`.
 
 # Image to Vector
 
-A free, private, browser-based raster-to-SVG converter tuned for single color artwork, script lettering, clipart, and laser engraver assets. Images are processed locally.
+A free, private, browser-based raster-to-SVG converter tuned for single color artwork, script lettering, clipart, and laser engraver assets. Images are processed locally. The site opens with bundled squirrel artwork already traced so the controls and SVG preview are immediately usable.
 
 ## Browser version
 

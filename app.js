@@ -185,6 +185,18 @@ async function addFiles(fileList) {
   elements.fileInput.value = "";
 }
 
+async function loadDefaultImage() {
+  try {
+    const response = await fetch("./squirrel1Color.png");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const blob = await response.blob();
+    await addFiles([new File([blob], "squirrel1Color.png", { type: blob.type || "image/png" })]);
+  } catch (error) {
+    console.error("Could not load the bundled example image.", error);
+    showError("The bundled example image could not be loaded. You can still choose your own artwork.");
+  }
+}
+
 function downloadItem(item) {
   if (!item?.svg) return;
   const url = URL.createObjectURL(new Blob([item.svg], { type: "image/svg+xml" }));
@@ -283,6 +295,7 @@ try {
   await init();
   runtimeReady = true;
   setStatus("Ready");
+  await loadDefaultImage();
 } catch (error) {
   console.error(error);
   setStatus("Vector engine unavailable");
